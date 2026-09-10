@@ -32,7 +32,7 @@ const I18N = {
     history: "JUST NOW",
     clearHistory: "TOSS",
     emptyHistory: "Nothing yet. Paste a real key and send a line.",
-    alts: "OR SAY IT LIKE THIS",
+    alts: "5 MORE TAKES",
     literalLabel: "The boring translation",
     foot: "口语 only flips the UI language. The two channels are the actual translation. Not the same button. We ping DeepSeek before we trust a key. No canned lines pretending to be results.",
     keyTitle: "DeepSeek API key",
@@ -79,7 +79,7 @@ const I18N = {
     history: "刚才翻过的",
     clearHistory: "清掉",
     emptyHistory: "还没跑过。先把 key 贴上，再整一句。",
-    alts: "也可以这么说",
+    alts: "另外五句",
     literalLabel: "正经翻译会写成",
     foot: "「口语」只换界面语言。两个频道才是翻译方向，别点错。key 会先拿去 DeepSeek 验一下。不会拿写死的句子骗你。",
     keyTitle: "DeepSeek 的 key",
@@ -452,12 +452,20 @@ function showSticker(meme, { animate = true } = {}) {
   }
   const alts = $("alts");
   alts.innerHTML = "";
-  (meme.alts || []).forEach((line) => {
+  (meme.alts || []).forEach((line, i) => {
     const btn = document.createElement("button");
     btn.type = "button";
-    btn.textContent = line;
+    const n = document.createElement("em");
+    n.textContent = String(i + 1).padStart(2, "0");
+    const span = document.createElement("span");
+    span.textContent = line;
+    btn.append(n, span);
     btn.addEventListener("click", () => {
-      const next = { ...meme, line, alts: [meme.line, ...(meme.alts || []).filter((a) => a !== line)] };
+      const next = {
+        ...meme,
+        line,
+        alts: [meme.line, ...(meme.alts || []).filter((a) => a !== line)].slice(0, 8),
+      };
       showSticker(next, { animate: false });
     });
     alts.appendChild(btn);

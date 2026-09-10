@@ -79,11 +79,11 @@ Social-move map:
 3. 严禁：非常、十分、令人、显得、有些、比较、这节课、进行、导览、传播、体现了、该表达、你真勇敢、你胆子真大。
 4. why 用大白话，像跟朋友解释这个梗，不要小论文。
 5. 力度对齐。阴阳就阴阳，开骂就开骂。
-6. 一行定输赢。alts 两个同一力度不同口吻。literal 必须是干巴巴字典翻译。
+6. line 是首选。alts 必须另外给满 5 句，同一力度、不同口吻，不能跟 line 重复，不能灌水。literal 必须是干巴巴字典翻译。
 
 ${LIVE_CN}
 
-{"line":"那句中文梗","alts":["备选1","备选2"],"vibe":"语气","why":"为啥这么说，20-40字","literal":"字典翻译"}`,
+{"line":"那句中文梗","alts":["备选1","备选2","备选3","备选4","备选5"],"vibe":"语气","why":"为啥这么说，20-40字","literal":"字典翻译"}`,
 
     "cn-en": `You post on English internet. Not a textbook. Not a tour guide.
 
@@ -97,11 +97,11 @@ Hard rules:
 3. Ban tourist English. Ban "nobody likes you" and "you're so brave" as outputs.
 4. "why" is a friend explaining the bit.
 5. Match intensity. Translate the SOCIAL MOVE, not the words.
-6. alts = two other angles. literal = boring dictionary gloss.
+6. "line" is the pick. "alts" MUST be 5 more lines, same heat, different mouth. No dupes with line. literal = boring dictionary gloss.
 
 ${LIVE_EN}
 
-{"line":"the English meme line","alts":["alt 1","alt 2"],"vibe":"tone","why":"why this hits","literal":"dictionary translation"}`,
+{"line":"the English meme line","alts":["alt 1","alt 2","alt 3","alt 4","alt 5"],"vibe":"tone","why":"why this hits","literal":"dictionary translation"}`,
   };
 
   function userPrompt(dir, text) {
@@ -112,6 +112,7 @@ ${LIVE_EN}
         "you are so brave / you're so brave 现在最火是「你的胆子真是肥嘟嘟的」，不是「你胆子真大」，也别写成真实/滴/低。",
         "原句：",
         text,
+        "alts 必须另外给满 5 句。",
         "只输出 JSON。",
       ].join("\n");
     }
@@ -121,6 +122,7 @@ ${LIVE_EN}
       "你的胆子真是肥嘟嘟的 / 你胆子真是肥嘟嘟的 is a soft-roast of nerve. Do NOT output you're so brave.",
       "Source:",
       text,
+      "alts must be 5 other lines.",
       "JSON only.",
     ].join("\n");
   }

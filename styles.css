@@ -619,20 +619,37 @@ html[data-dir="cn-en"] .sticker-line {
 }
 
 .alts button {
+  display: grid;
+  grid-template-columns: 2.2em 1fr;
+  gap: 8px;
+  align-items: start;
   text-align: left;
   font-family: var(--ui);
   font-size: 14px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   border: 1px dashed rgba(16, 14, 12, 0.25);
   background: transparent;
   color: var(--ink);
   cursor: pointer;
 }
 
+.alts button em {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #8a7f70;
+  padding-top: 2px;
+}
+
 .alts button:hover {
   border-style: solid;
   background: var(--ink);
   color: var(--paper);
+}
+
+.alts button:hover em {
+  color: var(--lime);
 }
 
 .sticker-actions {

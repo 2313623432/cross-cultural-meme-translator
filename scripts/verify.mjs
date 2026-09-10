@@ -152,6 +152,22 @@ check("live pack maps you're so brave to 肥嘟嘟的", () => {
   assert.doesNotMatch(memes.SYSTEM["en-cn"], /你胆子真大（阴阳/);
 });
 
+check("keeps five other takes", () => {
+  const meme = core.parseMeme(
+    JSON.stringify({
+      line: "你的胆子真是肥嘟嘟的",
+      alts: ["不打听打听我是谁", "这谁顶得住", "哈人", "你真把自己当人物了", "胆子肥到能点外卖加烟"],
+    })
+  );
+  assert.equal(meme.alts.length, 5);
+});
+
+check("prompt asks for five alts", () => {
+  const memes = require(join(root, "memes.js"));
+  assert.match(memes.SYSTEM["en-cn"], /给满 5 句/);
+  assert.match(memes.userPrompt("en-cn", "hi"), /给满 5 句/);
+});
+
 check("search bodies force web_search", () => {
   const bodies = core.buildSearchBodies("deepseek-flash", "sys", "user");
   assert.equal(bodies[0].tools[0].type, "web_search");

@@ -126,7 +126,7 @@
       .concat(obj.alts || obj.alternatives || [])
       .map((item) => cleanDisplay(item))
       .filter((item, i, arr) => item && item !== line && arr.indexOf(item) === i)
-      .slice(0, 2);
+      .slice(0, 8);
     return {
       line,
       alts,
@@ -222,7 +222,7 @@
         { role: "user", content: user },
       ],
       temperature: 0.95,
-      max_tokens: 500,
+      max_tokens: 900,
     };
     return [
       {
