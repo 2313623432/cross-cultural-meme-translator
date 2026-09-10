@@ -28,7 +28,17 @@ npx --yes serve .
 
 On Vercel, `/api/translate` and `/api/models` proxy to `api.deepseek.com`. Locally without `vercel dev`, the browser talks to DeepSeek directly (CORS is enabled by DeepSeek).
 
+## Live
+
+Permanent GitHub Pages:
+
+https://2313623432.github.io/cross-cultural-meme-translator/
+
 ## Deploy
+
+GitHub Pages is enabled from the `master` branch root.
+
+To also put it on Vercel (needs a Vercel login):
 
 ```bash
 npx vercel login

@@ -35,7 +35,7 @@
         <span class="live-dot" aria-hidden="true"></span>
         <span class="callsign">FREQ.404</span>
         <span class="brand-sep">/</span>
-        <span class="brand-sub" data-i18n="onAir">ON AIR · MEME LAYER</span>
+        <span class="brand-sub" data-i18n="onAir">LIVE. NOT A DECK.</span>
       </div>
       <div class="top-actions">
         <button type="button" class="chip chip-lang" id="langBtn" title="Switch interface language">
@@ -50,7 +50,7 @@
 
     <main class="stage">
       <aside class="rail">
-        <p class="rail-kicker" data-i18n="kicker">WHY THIS EXISTS</p>
+        <p class="rail-kicker" data-i18n="kicker">THE ACTUAL PROBLEM</p>
         <div class="titles">
           <h1 class="title-en">
             CROSS-<br />CULTURE<br /><span>MEME</span><br />TRANSLATOR
@@ -58,13 +58,13 @@
           <h1 class="title-cn">跨文化梗翻译器</h1>
         </div>
         <p class="manifesto" data-i18n="manifesto">
-          Most culture work is a museum tour. Mid-Autumn history puts even locals
-          to sleep — foreigners never stood a chance. Funny beats useful. In China,
-          “you’re so brave” loses to posting the dragon pic. Same on the other
-          internet. Translation is solved. The meme layer is not. That’s why a
-          Western LoL flame still reads as flirting on our side.
+          Culture export keeps doing TED Talks about Mid-Autumn Festival. Even we
+          skip that. Funny beats useful. In China you don’t say “you’re so brave” —
+          you drop the dragon pic. Same on the other internet. Google Translate is
+          solved. The meme layer isn’t. That’s why a LoL flame from NA still reads
+          as flirting over here.
         </p>
-        <p class="rail-kicker tape-kicker" data-i18n="tapeKicker">CALIBRATION SAMPLES</p>
+        <p class="rail-kicker tape-kicker" data-i18n="tapeKicker">THESE HIT</p>
         <ul class="tape" id="tapeList"></ul>
       </aside>
 
@@ -79,7 +79,7 @@
           >
             <span class="freq-meta" data-i18n="channelA">CHANNEL A</span>
             <span class="freq-title" data-i18n="dirEnCn">EN → CN meme</span>
-            <span class="freq-sub" data-i18n="dirEnCnSub">English in. Chinese internet out.</span>
+            <span class="freq-sub" data-i18n="dirEnCnSub">English in. How we’d actually say it.</span>
           </button>
           <button type="button" class="swap" id="swapBtn" aria-label="Swap direction">
             ⇄
@@ -93,13 +93,13 @@
           >
             <span class="freq-meta" data-i18n="channelB">CHANNEL B</span>
             <span class="freq-title" data-i18n="dirCnEn">CN → EN meme</span>
-            <span class="freq-sub" data-i18n="dirCnEnSub">Chinese in. Western internet out.</span>
+            <span class="freq-sub" data-i18n="dirCnEnSub">Chinese in. How they’d actually say it.</span>
           </button>
         </div>
 
         <label class="field-label" for="inputText">
-          <span data-i18n="inputLabel">DROP THE LINE</span>
-          <span class="hint" data-i18n="inputHint">Ctrl + Enter to fire</span>
+          <span data-i18n="inputLabel">PASTE THE LINE</span>
+          <span class="hint" data-i18n="inputHint">Ctrl + Enter to send</span>
         </label>
         <textarea
           id="inputText"
@@ -114,7 +114,7 @@
 
         <div class="fire-row">
           <button type="button" class="fire" id="fireBtn">
-            <span class="fire-text" data-i18n="fire">FIRE THE MEME</span>
+            <span class="fire-text" data-i18n="fire">SEND IT</span>
             <span class="fire-bars" aria-hidden="true">
               <i></i><i></i><i></i><i></i><i></i>
             </span>
@@ -125,27 +125,27 @@
         <article class="sticker is-empty" id="sticker" hidden>
           <div class="sticker-head">
             <span class="sticker-id" id="stickerId">404-EN-CN</span>
-            <span class="stamp" id="stamp" data-i18n="stamp">DROPPED</span>
+            <span class="stamp" id="stamp" data-i18n="stamp">SENT</span>
           </div>
           <p class="sticker-line" id="outputLine"></p>
           <p class="sticker-vibe" id="outputVibe"></p>
           <p class="sticker-why" id="outputWhy"></p>
           <p class="sticker-literal" id="literalWrap" hidden>
-            <span data-i18n="literalLabel">Dictionary would say</span>
+            <span data-i18n="literalLabel">The boring translation</span>
             <span id="outputLiteral"></span>
           </p>
-          <p class="alts-label" id="altsLabel" hidden data-i18n="alts">OTHER ANGLES</p>
+          <p class="alts-label" id="altsLabel" hidden data-i18n="alts">OR SAY IT LIKE THIS</p>
           <div class="alts" id="alts"></div>
           <div class="sticker-actions">
-            <button type="button" class="ghost" id="copyBtn" data-i18n="copy">COPY LINE</button>
-            <button type="button" class="ghost" id="againBtn" data-i18n="again">AGAIN</button>
+            <button type="button" class="ghost" id="copyBtn" data-i18n="copy">COPY</button>
+            <button type="button" class="ghost" id="againBtn" data-i18n="again">SPIN IT</button>
           </div>
         </article>
 
         <section class="history">
           <div class="field-label">
-            <span data-i18n="history">THIS BROWSER · RECENT</span>
-            <button type="button" class="linkish" id="clearHistory" data-i18n="clearHistory">CLEAR</button>
+            <span data-i18n="history">JUST NOW</span>
+            <button type="button" class="linkish" id="clearHistory" data-i18n="clearHistory">TOSS</button>
           </div>
           <ul class="history-list" id="historyList"></ul>
         </section>
@@ -154,8 +154,8 @@
 
     <footer class="foot">
       <p data-i18n="foot">
-        UI language and translation direction are two different knobs. Key stays in
-        your browser. Calls go straight to DeepSeek.
+        口语 only flips the UI language. The two channels are the actual translation.
+        Not the same button. We ping DeepSeek before we trust a key.
       </p>
     </footer>
 
@@ -186,7 +186,7 @@
             data-i18n="getKey"
             >Get a key</a
           >
-          <button type="button" class="save" id="saveKey" data-i18n="saveKey">SAVE & VERIFY</button>
+          <button type="button" class="save" id="saveKey" data-i18n="saveKey">SAVE & CHECK</button>
         </div>
       </div>
     </div>

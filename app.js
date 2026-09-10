@@ -11,94 +11,94 @@ const REQUEST_MS = 45000;
 
 const I18N = {
   en: {
-    onAir: "LIVE TOOL · NOT A MOCK",
+    onAir: "LIVE. NOT A DECK.",
     keyChip: "API KEY",
-    kicker: "WHY THIS EXISTS",
-    tapeKicker: "CALIBRATION SAMPLES",
+    kicker: "THE ACTUAL PROBLEM",
+    tapeKicker: "THESE HIT",
     manifesto:
-      "Most culture work is a museum tour. Mid-Autumn history puts even locals to sleep — foreigners never stood a chance. Funny beats useful. In China, “you’re so brave” loses to posting the dragon pic. Same on the other internet. Translation is solved. The meme layer is not. That’s why a Western LoL flame still reads as flirting on our side. Their heaviest line is “nobody likes you.” We thought they were being cute.",
-    channelA: "CHANNEL A",
-    channelB: "CHANNEL B",
+      "Culture export keeps doing TED Talks about Mid-Autumn Festival. Even we skip that. Funny beats useful. In China you don’t say “you’re so brave” — you drop the dragon pic. Same on the other internet. Google Translate is solved. The meme layer isn’t. That’s why a LoL flame from NA still reads as flirting over here. Their nuclear option is “nobody likes you.” We thought they were being cute.",
+    channelA: "A SIDE",
+    channelB: "B SIDE",
     dirEnCn: "EN → CN meme",
     dirCnEn: "CN → EN meme",
-    dirEnCnSub: "English in. Chinese internet out.",
-    dirCnEnSub: "Chinese in. Western internet out.",
-    inputLabel: "DROP THE LINE",
-    inputHint: "Ctrl + Enter to fire",
-    fire: "FIRE THE MEME",
-    stamp: "DROPPED",
-    copy: "COPY LINE",
-    again: "AGAIN",
-    history: "THIS BROWSER · RECENT",
-    clearHistory: "CLEAR",
-    emptyHistory: "No live runs yet. Fire a line with a real key.",
-    alts: "OTHER ANGLES",
-    literalLabel: "Dictionary would say",
-    foot: "口语 is UI language. The two channels are translation direction. Not the same knob. Key is verified against DeepSeek before it is trusted. Nothing here is a canned demo result.",
+    dirEnCnSub: "English in. How we’d actually say it.",
+    dirCnEnSub: "Chinese in. How they’d actually say it.",
+    inputLabel: "PASTE THE LINE",
+    inputHint: "Ctrl + Enter to send",
+    fire: "SEND IT",
+    stamp: "SENT",
+    copy: "COPY",
+    again: "SPIN IT",
+    history: "JUST NOW",
+    clearHistory: "TOSS",
+    emptyHistory: "Nothing yet. Paste a real key and send a line.",
+    alts: "OR SAY IT LIKE THIS",
+    literalLabel: "The boring translation",
+    foot: "口语 only flips the UI language. The two channels are the actual translation. Not the same button. We ping DeepSeek before we trust a key. No canned lines pretending to be results.",
     keyTitle: "DeepSeek API key",
     keyHelp:
-      "Paste a key from platform.deepseek.com. We ping DeepSeek /models with it. If that call fails, the key is not saved as live. Stored only in this browser.",
+      "Paste a key from platform.deepseek.com. We hit DeepSeek /models with it. If that dies, it does not count as live. Stays in this browser only.",
     getKey: "Get a key",
-    saveKey: "SAVE & VERIFY",
-    verifying: "Pinging DeepSeek…",
-    keyLive: "Key is live.",
-    keySavedUnverified: "Saved locally, but DeepSeek did not answer. Translation may still fail.",
-    needKey: "Verify a DeepSeek key first. This is a live call, not a demo.",
-    needText: "Give me a line to transmute.",
-    busy: "Calling DeepSeek…",
-    done: "Live result from DeepSeek.",
+    saveKey: "SAVE & CHECK",
+    verifying: "Asking DeepSeek…",
+    keyLive: "Key works.",
+    keySavedUnverified: "Saved here, but DeepSeek didn’t answer. The next send might still fail.",
+    needKey: "Check a DeepSeek key first. This is a real call, not a demo.",
+    needText: "You gotta type something.",
+    busy: "DeepSeek is cooking…",
+    done: "Fresh from DeepSeek.",
     copied: "Copied.",
-    copyFail: "Copy failed — select it yourself.",
-    badJson: "DeepSeek returned noise instead of a meme. Try again.",
-    switched: "Detected Chinese — switched to CN → EN.",
-    switchedEn: "Detected English — switched to EN → CN.",
+    copyFail: "Copy failed — just select it.",
+    badJson: "Model spat garbage. Hit it again.",
+    switched: "That’s Chinese — flipped to CN → EN.",
+    switchedEn: "That’s English — flipped to EN → CN.",
     langBtn: "口语",
     langTitle: "Switch interface to Chinese",
     placeholderEnCn: "the class is so boring",
     placeholderCnEn: "你行你上啊",
   },
   zh: {
-    onAir: "真调用 · 不是演示",
+    onAir: "真能用 · 不是 PPT",
     keyChip: "API KEY",
-    kicker: "为什么做这个",
-    tapeKicker: "校准样例",
+    kicker: "这玩意儿干嘛的",
+    tapeKicker: "对过味的",
     manifesto:
-      "严肃传播经常是博物馆导览。中秋节历史连本国人都不爱看，更别提外国人。有趣比有用更重要。在中国，一句「你胆子真大」不如直接发张龙图。外国互联网一个道理。翻译已经够发达了，梗还没有。所以英雄联盟里和外国人对骂，他们最重的一句也就是 nobody likes you，我们听着还以为在撒娇。",
-    channelA: "A 频",
-    channelB: "B 频",
+      "对外讲文化一张口就是中秋节从唐朝讲起。本国人都划走，你指望老外看完？好玩比有用重要多了。国内一句「你胆子真大」不如直接甩张龙图。国外也一样。翻译软件都卷死了，梗还是对不上。LOL 里跟外国人对线，他们最狠也就 nobody likes you，搁咱们这儿听着像在撒娇。",
+    channelA: "A 路",
+    channelB: "B 路",
     dirEnCn: "英语 → 中文梗",
     dirCnEn: "中文 → 英文梗",
-    dirEnCnSub: "英语进去，中文网感出来。",
-    dirCnEnSub: "中文进去，外国网感出来。",
-    inputLabel: "把原句丢进来",
-    inputHint: "Ctrl + Enter 开整",
-    fire: "开整",
-    stamp: "已转",
-    copy: "复制这句",
-    again: "再来一句",
-    history: "本机记录",
-    clearHistory: "清空",
-    emptyHistory: "还没有真跑过。贴密钥后开整一句。",
-    alts: "别的说法",
-    literalLabel: "字典会译成",
-    foot: "「口语」只切界面语言。两个频道才是翻译方向。不是同一个按钮。密钥会先向 DeepSeek 做真实验证。这里不会拿写死的句子冒充结果。",
-    keyTitle: "DeepSeek API 密钥",
+    dirEnCnSub: "英语丢进去，中文网上会怎么说",
+    dirCnEnSub: "中文丢进去，外国网上会怎么说",
+    inputLabel: "原句丢这儿",
+    inputHint: "Ctrl + Enter 直接出",
+    fire: "整活",
+    stamp: "好了",
+    copy: "抄走",
+    again: "换一句",
+    history: "刚才翻过的",
+    clearHistory: "清掉",
+    emptyHistory: "还没跑过。先把 key 贴上，再整一句。",
+    alts: "也可以这么说",
+    literalLabel: "正经翻译会写成",
+    foot: "「口语」只换界面语言。两个频道才是翻译方向，别点错。key 会先拿去 DeepSeek 验一下。不会拿写死的句子骗你。",
+    keyTitle: "DeepSeek 的 key",
     keyHelp:
-      "从 platform.deepseek.com 复制密钥。我们会用它请求 DeepSeek /models。验证失败就不会标成可用。只存在本机。",
-    getKey: "去申请密钥",
-    saveKey: "保存并验证",
-    verifying: "正在请求 DeepSeek…",
-    keyLive: "密钥可用。",
-    keySavedUnverified: "已保存在本地，但 DeepSeek 没应答。翻译仍可能失败。",
-    needKey: "先验证 DeepSeek 密钥。这是真调用，不是演示。",
-    needText: "先丢一句进来。",
-    busy: "正在请求 DeepSeek…",
-    done: "这是 DeepSeek 的实时结果。",
-    copied: "已复制。",
-    copyFail: "复制失败，请手动选中。",
-    badJson: "模型这次没按格式返回，再打一次。",
-    switched: "检测到中文，已切到 中文 → 英文梗。",
-    switchedEn: "检测到英语，已切到 英语 → 中文梗。",
+      "去 platform.deepseek.com 复制。我们会拿它打一下 DeepSeek 的 /models。过不了就不算能用。只存在你这台电脑。",
+    getKey: "没有 key？",
+    saveKey: "存上并验一下",
+    verifying: "正在问 DeepSeek…",
+    keyLive: "这 key 能用。",
+    keySavedUnverified: "先存在本地了，但 DeepSeek 没回。待会翻译可能翻车。",
+    needKey: "先把 DeepSeek 的 key 验过。这是真打接口，不是演示页。",
+    needText: "你得先打几个字进来。",
+    busy: "DeepSeek 正在编…",
+    done: "刚从 DeepSeek 打回来的。",
+    copied: "抄走了。",
+    copyFail: "没复制上，你自己选一下。",
+    badJson: "这回模型写飞了，再打一次。",
+    switched: "这是中文，已经切到「中文 → 英文梗」。",
+    switchedEn: "这是英语，已经切到「英语 → 中文梗」。",
     langBtn: "EN",
     langTitle: "Switch interface to English",
     placeholderEnCn: "the class is so boring",
@@ -129,51 +129,47 @@ const EXAMPLES = {
 };
 
 const SYSTEM = {
-  "en-cn": `你是「跨文化梗翻译器」的中文网感通道。
+  "en-cn": `你是混国内互联网的人，不是翻译软件，不是文化讲解员。
 
-任务：把英语句子翻成「中国互联网会怎么说」，不是字典翻译。
-目标平台：微信群、微博、B站评论区、小红书、贴吧、游戏语音、英雄联盟对线。
+把英语翻成「现在的人网上会怎么打」。微信群、微博、B站评论、小红书、贴吧、开黑语音、LOL 对线。
 
-硬规则：
-1. 只输出一个 JSON 对象，不要 markdown，不要解释。
-2. line 必须像真人刚打出来的：有网感、节奏、情绪。可以脏一点、抽象一点、夸张一点，但不要无意义乱码。
-3. 禁止书面腔、新闻腔、翻译腔。不要「这节课非常无聊」。
-4. 强度对齐：原句轻嘲就轻嘲，原句开骂就开骂，原句真心夸就真心夸——但用中文网感夸。
-5. 优先用当下仍活着的说法。不要堆砌，选一个最准的语气一锤定音。
-6. 外国网友以为在认真吵架、中国网友听着像撒娇的弱英骂，翻成中文时要给够力道。
-7. line 尽量一行。alts 给两个不同角度、同一强度的备选。literal 必须是普通字典翻译，用来对照。
+死规矩：
+1. 只输出一个 JSON，不要 markdown。
+2. line 必须像刚敲出来的：短、冲、有情绪。能脏就脏一点，能抽象就抽象，但别变成乱码。
+3. 严禁翻译腔、新闻腔、讲解腔。禁止：非常、十分、令人、显得、有些、比较、这节课、进行、导览、传播、体现了、该表达。不要「这节课非常无聊」。
+4. why 也用大白话，像跟朋友解释，不要小论文。
+5. 力度对齐。原句在阴阳你就阴阳，原句在开骂你就开骂，原句真心夸就用中文网感夸。
+6. 老外以为自己在对线、咱们听着像撒娇的那种弱英骂，中文要给够力。
+7. 一行定输赢。alts 再给两个同一力度、不同口吻的。literal 必须是干巴巴的字典翻译，拿来对照。
 
-校准：
+对味：
 - the class is so boring → 这课真是闹麻了
 - the class is so good → 这个课真尼玛有点意思啊啊啊
 - nobody likes you → 你这人在局里纯纯毒瘤
-- you're so brave → 你这人胆子真大（阴阳，不是夸奖）
+- you're so brave → 你这人胆子真大（阴阳，不是夸）
 
-JSON 形状：
-{"line":"最终那句中文梗","alts":["备选1","备选2"],"vibe":"语气标签","why":"为什么这么说才对味，20-40字","literal":"字典翻译"}`,
+{"line":"那句中文梗","alts":["备选1","备选2"],"vibe":"语气","why":"为啥这么说，20-40字大白话","literal":"字典翻译"}`,
 
-  "cn-en": `You are the English-internet channel of a Cross-Culture Meme Translator.
+  "cn-en": `You post on English internet. You are not a textbook, not a tour guide.
 
-Job: turn Chinese into how English-speaking internet would actually say it — not dictionary English.
-Target register: Twitter/X, TikTok comments, Reddit, Discord, Twitch chat, group chats.
+Turn Chinese into how people actually talk on Twitter/X, TikTok, Reddit, Discord, Twitch, group chats.
 
 Hard rules:
-1. Output one JSON object only. No markdown. No extra text.
-2. "line" must sound like a native poster, not a language learner.
-3. Ban textbook English. Ban weak insults like "nobody likes you" when the Chinese is roasting.
-4. Match intensity. 阴阳怪气 is sarcasm. 抽象 is shitpost energy.
-5. Use living register only when it fits. Do not dump a slang salad.
-6. If the Chinese is a meme (龙图, 已老实, 显眼包), translate the SOCIAL MOVE, not the words.
-7. One line. "alts" = two other angles, same intensity. "literal" = a boring dictionary translation for contrast.
+1. One JSON object. No markdown.
+2. "line" sounds like a native just typed it. Cadence, attitude, living slang.
+3. Ban tourist English and lecture English. Ban "nobody likes you" when the Chinese is actually roasting.
+4. "why" is a friend explaining the bit, not an essay.
+5. Match intensity. 阴阳怪气 = sarcasm. 抽象 = shitpost. 闹麻了 = this is so over / actually unhinged / I'm cooked.
+6. Translate the SOCIAL MOVE of memes (龙图, 已老实, 显眼包), not the words.
+7. One line. alts = two other angles, same heat. literal = boring dictionary gloss.
 
-Calibration:
+Hits:
 - 这课真是闹麻了 → this class is actually unhinged i cannot
 - 这个课真尼玛有点意思啊啊啊 → this class kinda goes crazy ngl
 - 你行你上啊 → ok boomer, you do it then
 - 什么档次跟我用一样的 → bro really thinks he's the main character
 - 你这人胆子真大 → that's crazy work. you really just said that
 
-JSON shape:
 {"line":"the English meme line","alts":["alt 1","alt 2"],"vibe":"tone","why":"why this hits, 20-40 words","literal":"dictionary translation"}`,
 };
 
