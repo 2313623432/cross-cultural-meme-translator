@@ -1,37 +1,27 @@
-# FREQ.404 · Cross-Culture Meme Translator / 跨文化梗翻译器
+# CHENJIAHE 26053017G · Cross-Cultural Meme Translator
 
-Not a dictionary. A meme-layer radio between Chinese internet and English internet.
+This folder is the **full product**:
+
+- `index.html` / `styles.css` / `app.js` — live web app (FREQ.404)
+- `Cross-Cultural Meme Translator.pptx` — pitch deck
+- `vercel.json` — Vercel static deploy
 
 Funny beats useful. Translation is solved. The meme layer is not.
 
-## Use
+## Use the site
 
-1. Open the site.
-2. Click **API KEY**, paste a [DeepSeek](https://platform.deepseek.com/api_keys) key. It stays in your browser (`localStorage`) and is sent only to DeepSeek.
-3. Pick a channel:
-   - **EN → CN meme** — English in, Chinese internet out (`the class is so boring` → `这课真是闹麻了`)
-   - **CN → EN meme** — Chinese in, Western internet out
-4. The **口语** button is UI language (default English). It is **not** the translation-direction switch.
+1. Open the deployed URL, or run locally with `npx --yes serve .`
+2. Click **API KEY**, paste a [DeepSeek](https://platform.deepseek.com/api_keys) key. It stays in this browser (`localStorage`) and is sent only to DeepSeek.
+3. Two different knobs:
+   - **口语** (top right) — UI language. Default English. Click to switch to Chinese.
+   - **CHANNEL A / B** — translation direction, not UI language.
+4. Channels:
+   - **EN → CN meme** — `the class is so boring` → `这课真是闹麻了`
+   - **CN → EN meme** — `你行你上啊` → `ok boomer, you do it then`
 
-## Stack
-
-Pure frontend. Static HTML / CSS / JS. No server, no build step.
-
-Calls `https://api.deepseek.com/chat/completions` from the browser (`deepseek-flash`, with fallbacks).
-
-## Local
-
-Any static server:
-
-```bash
-npx --yes serve .
-```
-
-## Deploy to Vercel
+## Deploy
 
 ```bash
 npx vercel login
 npx vercel --yes --prod
 ```
-
-Or push this folder to GitHub and import the repo in the Vercel dashboard (Framework Preset: Other, output is the repo root).

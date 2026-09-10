@@ -39,7 +39,7 @@ const I18N = {
     langBtn: "口语",
     langTitle: "Switch interface to Chinese",
     placeholderEnCn: "the class is so boring",
-    placeholderCnEn: "你这人胆子真大",
+    placeholderCnEn: "你行你上啊",
   },
   zh: {
     onAir: "直播中 · 梗频",
@@ -75,7 +75,7 @@ const I18N = {
     langBtn: "EN",
     langTitle: "Switch interface to English",
     placeholderEnCn: "the class is so boring",
-    placeholderCnEn: "你这人胆子真大",
+    placeholderCnEn: "你行你上啊",
   },
 };
 
@@ -83,12 +83,14 @@ const TAPE = {
   en: [
     { from: "the class is so boring", to: "这课真是闹麻了" },
     { from: "the class is so good", to: "这个课真尼玛有点意思啊啊啊" },
-    { from: "nobody likes you", to: "你这人在局里纯纯毒瘤" },
+    { from: "你行你上啊", to: "ok boomer, you do it then" },
+    { from: "什么档次跟我用一样的", to: "bro really thinks he's the main character" },
   ],
   zh: [
     { from: "the class is so boring", to: "这课真是闹麻了" },
     { from: "the class is so good", to: "这个课真尼玛有点意思啊啊啊" },
-    { from: "nobody likes you", to: "你这人在局里纯纯毒瘤" },
+    { from: "你行你上啊", to: "ok boomer, you do it then" },
+    { from: "什么档次跟我用一样的", to: "bro really thinks he's the main character" },
   ],
 };
 
@@ -98,14 +100,12 @@ const EXAMPLES = {
     "the class is so good",
     "nobody likes you",
     "you're so brave",
-    "this is crazy",
   ],
   "cn-en": [
+    "你行你上啊",
+    "什么档次跟我用一样的",
     "你这人胆子真大",
     "这课真是闹麻了",
-    "已老实",
-    "纯纯毒瘤",
-    "这谁顶得住",
   ],
 };
 
@@ -150,9 +150,9 @@ Hard rules:
 Calibration:
 - 这课真是闹麻了 → this class is actually unhinged i cannot
 - 这个课真尼玛有点意思啊啊啊 → this class kinda goes crazy ngl
+- 你行你上啊 → ok boomer, you do it then
+- 什么档次跟我用一样的 → bro really thinks he's the main character
 - 你这人胆子真大 → that's crazy work. you really just said that
-- 已老实 → he folded. logged off and touched grass
-- 纯纯毒瘤 → actual lobby parasite, report this guy
 
 JSON shape:
 {"line":"the English meme line","vibe":"tone in 2-5 words","why":"why this hits, 20-40 words"}`,
