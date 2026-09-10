@@ -39,6 +39,24 @@ check("parse raw line fallback", () => {
   assert.equal(meme.line, "bro really thinks he's the main character");
 });
 
+check("never show naked JSON as the line", () => {
+  const dumped = core.parseMeme('{"vibe":"roast","why":"x"}');
+  assert.equal(dumped, null);
+  const noisy = core.parseMeme(
+    'search notes {not json}\n{"line":"你的胆子真是肥嘟嘟的","vibe":"轻怼","why":"骑手梗","literal":"you are so brave"}'
+  );
+  assert.equal(noisy.line, "你的胆子真是肥嘟嘟的");
+  assert.equal(noisy.literal, "you are so brave");
+  assert.equal(core.looksLikeJson(noisy.line), false);
+});
+
+check("unwrap line field that is itself JSON", () => {
+  const meme = core.parseMeme(
+    '{"line":"{\\"line\\":\\"这课真是闹麻了\\",\\"vibe\\":\\"roast\\"}"}'
+  );
+  assert.equal(meme.line, "这课真是闹麻了");
+});
+
 check("reject empty", () => {
   assert.equal(core.parseMeme("   "), null);
   assert.equal(core.normalizeMeme({ vibe: "x" }), null);

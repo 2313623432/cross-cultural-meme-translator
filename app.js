@@ -436,9 +436,12 @@ function showSticker(meme, { animate = true } = {}) {
   $("stickerId").textContent = `404-${(meme.dir || state.dir).toUpperCase()}-${String(
     meme.ts || Date.now()
   ).slice(-4)}`;
-  $("outputLine").textContent = meme.line;
+  const line = FreqCore.cleanDisplay(meme.line);
+  $("outputLine").textContent = line;
   $("outputVibe").textContent = meme.vibe || "";
+  $("outputVibe").hidden = !meme.vibe;
   $("outputWhy").textContent = meme.why || "";
+  $("outputWhy").hidden = !meme.why;
   const literalWrap = $("literalWrap");
   if (meme.literal) {
     literalWrap.hidden = false;
@@ -494,6 +497,9 @@ async function fire() {
 
   try {
     const meme = await callDeepSeek(text);
+    if (!meme || !FreqCore.cleanDisplay(meme.line)) {
+      throw new Error(t("badJson"));
+    }
     const entry = {
       ...meme,
       input: text,

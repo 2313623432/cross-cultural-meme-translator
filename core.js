@@ -7,40 +7,132 @@
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   const MAX_INPUT = 500;
 
-  function parseMeme(content) {
-    const trimmed = String(content || "").trim();
-    const tryParse = (raw) => normalizeMeme(JSON.parse(raw));
-    try {
-      return tryParse(trimmed);
-    } catch {
-      const match = trimmed.match(/\{[\s\S]*\}/);
-      if (match) {
-        try {
-          return tryParse(match[0]);
-        } catch {
-          /* fall through */
+  function looksLikeJson(text) {
+    const src = String(text || "").trim();
+    if (!src) return false;
+    return (
+      src.startsWith("{") ||
+      src.startsWith("[") ||
+      src.startsWith("```") ||
+      /"line"\s*:/.test(src)
+    );
+  }
+
+  function stripFences(text) {
+    return String(text || "")
+      .replace(/```(?:json)?/gi, "")
+      .trim();
+  }
+
+  function extractJsonObjects(text) {
+    const src = String(text || "");
+    const out = [];
+    let start = -1;
+    let depth = 0;
+    let inStr = false;
+    let escape = false;
+    for (let i = 0; i < src.length; i += 1) {
+      const ch = src[i];
+      if (inStr) {
+        if (escape) {
+          escape = false;
+          continue;
+        }
+        if (ch === "\\") {
+          escape = true;
+          continue;
+        }
+        if (ch === '"') inStr = false;
+        continue;
+      }
+      if (ch === '"') {
+        inStr = true;
+        continue;
+      }
+      if (ch === "{") {
+        if (depth === 0) start = i;
+        depth += 1;
+      } else if (ch === "}") {
+        if (depth === 0) continue;
+        depth -= 1;
+        if (depth === 0 && start >= 0) {
+          out.push(src.slice(start, i + 1));
+          start = -1;
         }
       }
     }
-    if (trimmed) return normalizeMeme({ line: trimmed });
+    return out;
+  }
+
+  function unescapeJsonString(raw) {
+    try {
+      return JSON.parse('"' + raw + '"');
+    } catch {
+      return raw.replace(/\\n/g, "\n").replace(/\\"/g, '"');
+    }
+  }
+
+  function lineFromLooseText(text) {
+    const match = String(text || "").match(/"line"\s*:\s*"((?:\\.|[^"\\])*)"/);
+    if (!match) return "";
+    return unescapeJsonString(match[1]).trim();
+  }
+
+  function cleanDisplay(text) {
+    const src = String(text || "").trim();
+    if (!src || looksLikeJson(src)) return "";
+    return src.replace(/^["'`]+|["'`]+$/g, "").trim();
+  }
+
+  function parseMeme(content) {
+    const trimmed = stripFences(content);
+    if (!trimmed) return null;
+
+    const tryObj = (raw) => {
+      try {
+        return normalizeMeme(JSON.parse(raw));
+      } catch {
+        return null;
+      }
+    };
+
+    let meme = tryObj(trimmed);
+    if (meme) return meme;
+
+    const blobs = extractJsonObjects(trimmed);
+    for (let i = blobs.length - 1; i >= 0; i -= 1) {
+      meme = tryObj(blobs[i]);
+      if (meme) return meme;
+    }
+
+    const loose = lineFromLooseText(trimmed);
+    if (loose && !looksLikeJson(loose)) {
+      return normalizeMeme({ line: loose });
+    }
+
+    if (!looksLikeJson(trimmed)) return normalizeMeme({ line: trimmed });
     return null;
   }
 
   function normalizeMeme(obj) {
     if (!obj || typeof obj !== "object") return null;
-    const line = String(obj.line || obj.text || obj.meme || "").trim();
+    let line = cleanDisplay(obj.line || obj.text || obj.meme || "");
+    if (!line && typeof obj.line === "string" && looksLikeJson(obj.line)) {
+      const nested = parseMeme(obj.line);
+      if (nested) return nested;
+    }
     if (!line) return null;
     const alts = []
       .concat(obj.alts || obj.alternatives || [])
-      .map((item) => String(item || "").trim())
+      .map((item) => cleanDisplay(item))
       .filter((item, i, arr) => item && item !== line && arr.indexOf(item) === i)
       .slice(0, 2);
     return {
       line,
       alts,
-      vibe: String(obj.vibe || obj.tone || "").trim(),
-      why: String(obj.why || obj.reason || "").trim(),
-      literal: String(obj.literal || obj.dictionary || "").trim(),
+      vibe: cleanDisplay(obj.vibe || obj.tone || ""),
+      why: cleanDisplay(obj.why || obj.reason || ""),
+      literal: cleanDisplay(obj.literal || obj.dictionary || ""),
     };
   }
 
@@ -105,24 +197,20 @@
     const choice = data.choices?.[0]?.message?.content;
     if (typeof choice === "string" && choice.trim()) return choice.trim();
     const chunks = [];
-    const output = data.output;
-    if (Array.isArray(output)) {
-      output.forEach((item) => {
-        if (!item || typeof item !== "object") return;
-        if (item.type && item.type !== "message" && item.type !== "output_text") return;
-        const content = item.content;
-        if (typeof content === "string") chunks.push(content);
-        if (Array.isArray(content)) {
-          content.forEach((part) => {
-            if (!part) return;
-            if (typeof part.text === "string") chunks.push(part.text);
-            if (part.type === "output_text" && typeof part.text === "string") {
-              chunks.push(part.text);
-            }
-          });
-        }
-      });
-    }
+    const output = Array.isArray(data.output) ? data.output : [];
+    output.forEach((item) => {
+      if (!item || typeof item !== "object") return;
+      if (item.type && item.type !== "message" && item.type !== "output_text") return;
+      const content = item.content;
+      if (typeof content === "string") chunks.push(content);
+      if (Array.isArray(content)) {
+        content.forEach((part) => {
+          if (!part) return;
+          if (part.type && part.type !== "output_text" && part.type !== "text") return;
+          if (typeof part.text === "string") chunks.push(part.text);
+        });
+      }
+    });
     return chunks.join("\n").trim();
   }
 
@@ -175,6 +263,8 @@
     MAX_INPUT,
     parseMeme,
     normalizeMeme,
+    looksLikeJson,
+    cleanDisplay,
     detectDir,
     mapHttpError,
     clipInput,
