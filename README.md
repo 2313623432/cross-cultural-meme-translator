@@ -1,23 +1,32 @@
 # CHENJIAHE 26053017G · Cross-Cultural Meme Translator
 
-This folder is the **full product**:
+This folder is the **full product**: a live tool, not a mock.
 
-- `index.html` / `styles.css` / `app.js` — live web app (FREQ.404)
+- `index.html` / `styles.css` / `app.js` / `core.js` — frontend
+- `api/translate.js` / `api/models.js` — Vercel proxy to DeepSeek (same-origin, real upstream)
 - `Cross-Cultural Meme Translator.pptx` — pitch deck
-- `vercel.json` — Vercel static deploy
+- `scripts/verify.mjs` — checks parsers, language detect, and that results are not hardcoded
 
-Funny beats useful. Translation is solved. The meme layer is not.
+## What is real
 
-## Use the site
+1. Paste a DeepSeek key. The app **pings** `GET /models` before marking it live.
+2. Fire a line. The app calls DeepSeek chat completions. There is no canned output path.
+3. Each result shows the meme line **and** the boring dictionary gloss, so you can see it is not Google Translate.
+4. History is stored in this browser only. Click a row to restore a **previous live run**.
 
-1. Open the deployed URL, or run locally with `npx --yes serve .`
-2. Click **API KEY**, paste a [DeepSeek](https://platform.deepseek.com/api_keys) key. It stays in this browser (`localStorage`) and is sent only to DeepSeek.
-3. Two different knobs:
-   - **口语** (top right) — UI language. Default English. Click to switch to Chinese.
-   - **CHANNEL A / B** — translation direction, not UI language.
-4. Channels:
-   - **EN → CN meme** — `the class is so boring` → `这课真是闹麻了`
-   - **CN → EN meme** — `你行你上啊` → `ok boomer, you do it then`
+## Two different knobs
+
+- **口语** (top right): UI language. Default English.
+- **CHANNEL A / B**: translation direction.
+
+## Run
+
+```bash
+npm test
+npx --yes serve .
+```
+
+On Vercel, `/api/translate` and `/api/models` proxy to `api.deepseek.com`. Locally without `vercel dev`, the browser talks to DeepSeek directly (CORS is enabled by DeepSeek).
 
 ## Deploy
 

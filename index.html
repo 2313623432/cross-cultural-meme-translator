@@ -22,6 +22,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./core.js"></script>
   </head>
   <body>
     <div class="noise" aria-hidden="true"></div>
@@ -63,6 +64,7 @@
           internet. Translation is solved. The meme layer is not. That’s why a
           Western LoL flame still reads as flirting on our side.
         </p>
+        <p class="rail-kicker tape-kicker" data-i18n="tapeKicker">CALIBRATION SAMPLES</p>
         <ul class="tape" id="tapeList"></ul>
       </aside>
 
@@ -105,6 +107,9 @@
           maxlength="500"
           placeholder="the class is so boring"
         ></textarea>
+        <div class="field-meta">
+          <span id="charCount">0 / 500</span>
+        </div>
         <div class="pills" id="examplePills"></div>
 
         <div class="fire-row">
@@ -125,11 +130,25 @@
           <p class="sticker-line" id="outputLine"></p>
           <p class="sticker-vibe" id="outputVibe"></p>
           <p class="sticker-why" id="outputWhy"></p>
+          <p class="sticker-literal" id="literalWrap" hidden>
+            <span data-i18n="literalLabel">Dictionary would say</span>
+            <span id="outputLiteral"></span>
+          </p>
+          <p class="alts-label" id="altsLabel" hidden data-i18n="alts">OTHER ANGLES</p>
+          <div class="alts" id="alts"></div>
           <div class="sticker-actions">
             <button type="button" class="ghost" id="copyBtn" data-i18n="copy">COPY LINE</button>
             <button type="button" class="ghost" id="againBtn" data-i18n="again">AGAIN</button>
           </div>
         </article>
+
+        <section class="history">
+          <div class="field-label">
+            <span data-i18n="history">THIS BROWSER · RECENT</span>
+            <button type="button" class="linkish" id="clearHistory" data-i18n="clearHistory">CLEAR</button>
+          </div>
+          <ul class="history-list" id="historyList"></ul>
+        </section>
       </section>
     </main>
 
@@ -147,8 +166,8 @@
           <button type="button" class="x" id="closeKey" aria-label="Close">×</button>
         </div>
         <p class="modal-copy" data-i18n="keyHelp">
-          Paste a key from platform.deepseek.com. It is stored only in this browser
-          (localStorage) and sent to DeepSeek. We never keep it.
+          Paste a key from platform.deepseek.com. We ping DeepSeek /models with it.
+          If that call fails, the key is not saved as live. Stored only in this browser.
         </p>
         <input
           id="apiKeyInput"
@@ -157,6 +176,7 @@
           spellcheck="false"
           placeholder="sk-..."
         />
+        <p class="key-status" id="keyStatus"></p>
         <div class="modal-actions">
           <a
             class="link"
@@ -166,7 +186,7 @@
             data-i18n="getKey"
             >Get a key</a
           >
-          <button type="button" class="save" id="saveKey" data-i18n="saveKey">SAVE KEY</button>
+          <button type="button" class="save" id="saveKey" data-i18n="saveKey">SAVE & VERIFY</button>
         </div>
       </div>
     </div>

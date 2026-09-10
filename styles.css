@@ -187,6 +187,10 @@ html[lang="zh"] {
 }
 
 .key-dot[data-state="on"] {
+  background: var(--gold);
+}
+
+.key-dot[data-state="live"] {
   background: var(--lime);
   box-shadow: 0 0 8px var(--lime);
 }
@@ -248,6 +252,10 @@ html[lang="zh"] .title-cn {
   font-size: 14px;
   line-height: 1.7;
   margin: 0 0 28px;
+}
+
+.tape-kicker {
+  margin-top: 8px;
 }
 
 .tape {
@@ -371,6 +379,16 @@ textarea {
 
 textarea:focus {
   border-color: var(--gold);
+}
+
+.field-meta {
+  display: flex;
+  justify-content: flex-end;
+  margin: 6px 0 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ash);
 }
 
 .pills {
@@ -566,10 +584,124 @@ html[data-dir="cn-en"] .sticker-line {
   color: var(--vermillion);
 }
 
+.sticker-literal {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(16, 14, 12, 0.2);
+  color: #6b6256;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sticker-literal span:first-child {
+  display: block;
+  font-family: var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.alts-label {
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  color: #6b6256;
+  margin: 14px 0 6px;
+}
+
+.alts {
+  display: grid;
+  gap: 6px;
+}
+
+.alts button {
+  text-align: left;
+  font-family: var(--ui);
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px dashed rgba(16, 14, 12, 0.25);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.alts button:hover {
+  border-style: solid;
+  background: var(--ink);
+  color: var(--paper);
+}
+
 .sticker-actions {
   display: flex;
   gap: 8px;
   margin-top: 16px;
+}
+
+.history {
+  margin-top: 28px;
+}
+
+.history .field-label {
+  align-items: center;
+}
+
+.linkish {
+  border: 0;
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.history-list button {
+  width: 100%;
+  text-align: left;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: var(--ink-2);
+  color: var(--paper);
+  cursor: pointer;
+  font-family: var(--ui);
+}
+
+.history-list button span {
+  display: block;
+  font-size: 13px;
+}
+
+.history-list button small {
+  display: block;
+  margin-top: 4px;
+  color: var(--lime);
+  font-size: 13px;
+}
+
+.history-empty {
+  color: var(--ash);
+  font-size: 13px;
+}
+
+.key-status {
+  min-height: 1.4em;
+  font-size: 13px;
+  color: var(--lime);
+  margin: 0 0 12px;
+}
+
+.key-status.err {
+  color: var(--vermillion-2);
 }
 
 .ghost {
