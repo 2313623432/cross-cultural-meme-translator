@@ -55,7 +55,7 @@ const I18N = {
     langBtn: "口语",
     langTitle: "Switch interface to Chinese",
     placeholderEnCn: "you're so brave",
-    placeholderCnEn: "你胆子真实肥嘟嘟滴",
+    placeholderCnEn: "你的胆子真是肥嘟嘟的",
   },
   zh: {
     onAir: "真能用 · 不是 PPT",
@@ -63,7 +63,7 @@ const I18N = {
     kicker: "这玩意儿干嘛的",
     tapeKicker: "对过味的",
     manifesto:
-      "对外讲文化一张口就是中秋节从唐朝讲起。本国人都划走，你指望老外看完？好玩比有用重要多了。you're so brave 现在没人回「你胆子真大」，最火的是「你胆子真实肥嘟嘟滴」，再不行就甩张龙图。翻译软件都卷死了，梗还是对不上。LOL 里跟外国人对线，他们最狠也就 nobody likes you，搁咱们这儿听着像在撒娇。",
+      "对外讲文化一张口就是中秋节从唐朝讲起。本国人都划走，你指望老外看完？好玩比有用重要多了。you're so brave 现在没人回「你胆子真大」，最火的是「你的胆子真是肥嘟嘟的」，再不行就甩张龙图。翻译软件都卷死了，梗还是对不上。LOL 里跟外国人对线，他们最狠也就 nobody likes you，搁咱们这儿听着像在撒娇。",
     channelA: "A 路",
     channelB: "B 路",
     dirEnCn: "英语 → 中文梗",
@@ -102,7 +102,7 @@ const I18N = {
     langBtn: "EN",
     langTitle: "Switch interface to English",
     placeholderEnCn: "you're so brave",
-    placeholderCnEn: "你胆子真实肥嘟嘟滴",
+    placeholderCnEn: "你的胆子真是肥嘟嘟的",
   },
 };
 
