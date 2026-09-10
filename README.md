@@ -30,9 +30,11 @@ On Vercel, `/api/translate` and `/api/models` proxy to `api.deepseek.com`. Local
 
 ## Live
 
-Permanent GitHub Pages:
+Permanent site (GitHub Pages, does not expire):
 
 https://2313623432.github.io/cross-cultural-meme-translator/
+
+Repo: https://github.com/2313623432/cross-cultural-meme-translator
 
 ## Deploy
 
