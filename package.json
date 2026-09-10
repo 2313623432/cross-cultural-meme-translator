@@ -1,0 +1,9 @@
+{
+  "name": "cross-culture-meme-translator",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FREQ.404 — Cross-Culture Meme Translator / 跨文化梗翻译器",
+  "scripts": {
+    "start": "npx --yes serve ."
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FREQ.404 · Cross-Culture Meme Translator</title>
+    <meta
+      name="description"
+      content="Not a translator. A meme-layer radio between Chinese internet and English internet. Funny beats useful."
+    />
+    <meta property="og:title" content="FREQ.404 · Cross-Culture Meme Translator" />
+    <meta
+      property="og:description"
+      content="English in, Chinese meme out. Chinese in, English internet out. Translation is solved. The meme layer is not."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&family=Share+Tech+Mono&family=Sora:wght@400;500;600;700&family=Unbounded:wght@500;700;800;900&family=ZCOOL+QingKe+HuangYou&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="glow glow-cn" aria-hidden="true"></div>
+    <div class="glow glow-en" aria-hidden="true"></div>
+
+    <header class="top">
+      <div class="brand">
+        <span class="live-dot" aria-hidden="true"></span>
+        <span class="callsign">FREQ.404</span>
+        <span class="brand-sep">/</span>
+        <span class="brand-sub" data-i18n="onAir">ON AIR · MEME LAYER</span>
+      </div>
+      <div class="top-actions">
+        <button type="button" class="chip chip-lang" id="langBtn" title="Switch interface language">
+          口语
+        </button>
+        <button type="button" class="chip chip-key" id="keyBtn">
+          <span class="key-dot" id="keyDot" data-state="off"></span>
+          <span data-i18n="keyChip">API KEY</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="stage">
+      <aside class="rail">
+        <p class="rail-kicker" data-i18n="kicker">WHY THIS EXISTS</p>
+        <div class="titles">
+          <h1 class="title-en">
+            CROSS-<br />CULTURE<br /><span>MEME</span><br />TRANSLATOR
+          </h1>
+          <h1 class="title-cn">跨文化梗翻译器</h1>
+        </div>
+        <p class="manifesto" data-i18n="manifesto">
+          Most culture work is a museum tour. Mid-Autumn history puts even locals
+          to sleep — foreigners never stood a chance. Funny beats useful. In China,
+          “you’re so brave” loses to posting the dragon pic. Same on the other
+          internet. Translation is solved. The meme layer is not. That’s why a
+          Western LoL flame still reads as flirting on our side.
+        </p>
+        <ul class="tape" id="tapeList"></ul>
+      </aside>
+
+      <section class="deck">
+        <div class="freq-row" role="tablist" aria-label="Translation direction">
+          <button
+            type="button"
+            class="freq freq-en-cn is-on"
+            id="dirEnCn"
+            role="tab"
+            aria-selected="true"
+          >
+            <span class="freq-meta" data-i18n="channelA">CHANNEL A</span>
+            <span class="freq-title" data-i18n="dirEnCn">EN → CN meme</span>
+            <span class="freq-sub" data-i18n="dirEnCnSub">English in. Chinese internet out.</span>
+          </button>
+          <button type="button" class="swap" id="swapBtn" aria-label="Swap direction">
+            ⇄
+          </button>
+          <button
+            type="button"
+            class="freq freq-cn-en"
+            id="dirCnEn"
+            role="tab"
+            aria-selected="false"
+          >
+            <span class="freq-meta" data-i18n="channelB">CHANNEL B</span>
+            <span class="freq-title" data-i18n="dirCnEn">CN → EN meme</span>
+            <span class="freq-sub" data-i18n="dirCnEnSub">Chinese in. Western internet out.</span>
+          </button>
+        </div>
+
+        <label class="field-label" for="inputText">
+          <span data-i18n="inputLabel">DROP THE LINE</span>
+          <span class="hint" data-i18n="inputHint">Ctrl + Enter to fire</span>
+        </label>
+        <textarea
+          id="inputText"
+          rows="4"
+          maxlength="500"
+          placeholder="the class is so boring"
+        ></textarea>
+        <div class="pills" id="examplePills"></div>
+
+        <div class="fire-row">
+          <button type="button" class="fire" id="fireBtn">
+            <span class="fire-text" data-i18n="fire">FIRE THE MEME</span>
+            <span class="fire-bars" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i>
+            </span>
+          </button>
+          <p class="status" id="status"></p>
+        </div>
+
+        <article class="sticker is-empty" id="sticker" hidden>
+          <div class="sticker-head">
+            <span class="sticker-id" id="stickerId">404-EN-CN</span>
+            <span class="stamp" id="stamp" data-i18n="stamp">DROPPED</span>
+          </div>
+          <p class="sticker-line" id="outputLine"></p>
+          <p class="sticker-vibe" id="outputVibe"></p>
+          <p class="sticker-why" id="outputWhy"></p>
+          <div class="sticker-actions">
+            <button type="button" class="ghost" id="copyBtn" data-i18n="copy">COPY LINE</button>
+            <button type="button" class="ghost" id="againBtn" data-i18n="again">AGAIN</button>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p data-i18n="foot">
+        UI language and translation direction are two different knobs. Key stays in
+        your browser. Calls go straight to DeepSeek.
+      </p>
+    </footer>
+
+    <div class="modal" id="keyModal" hidden>
+      <div class="modal-card">
+        <div class="modal-head">
+          <h2 data-i18n="keyTitle">DeepSeek API key</h2>
+          <button type="button" class="x" id="closeKey" aria-label="Close">×</button>
+        </div>
+        <p class="modal-copy" data-i18n="keyHelp">
+          Paste a key from platform.deepseek.com. It is stored only in this browser
+          (localStorage) and sent to DeepSeek. We never keep it.
+        </p>
+        <input
+          id="apiKeyInput"
+          type="password"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="sk-..."
+        />
+        <div class="modal-actions">
+          <a
+            class="link"
+            href="https://platform.deepseek.com/api_keys"
+            target="_blank"
+            rel="noreferrer"
+            data-i18n="getKey"
+            >Get a key</a
+          >
+          <button type="button" class="save" id="saveKey" data-i18n="saveKey">SAVE KEY</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
