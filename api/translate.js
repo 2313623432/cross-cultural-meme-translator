@@ -21,13 +21,23 @@ export default async function handler(req, res) {
   }
 
   const body = req.body;
-  if (!body || typeof body !== "object" || !Array.isArray(body.messages)) {
+  if (!body || typeof body !== "object") {
+    res.status(400).json({ error: { message: "Invalid payload" } });
+    return;
+  }
+
+  const useResponses = body.input != null;
+  if (!useResponses && !Array.isArray(body.messages)) {
     res.status(400).json({ error: { message: "Invalid chat payload" } });
     return;
   }
 
+  const url = useResponses
+    ? "https://api.deepseek.com/responses"
+    : "https://api.deepseek.com/chat/completions";
+
   try {
-    const upstream = await fetch("https://api.deepseek.com/chat/completions", {
+    const upstream = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

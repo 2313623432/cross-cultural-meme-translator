@@ -93,6 +93,7 @@ check("HTML has both knobs", () => {
   assert.match(html, /id="dirCnEn"/);
   assert.match(html, /id="fireBtn"/);
   assert.match(html, /core\.js/);
+  assert.match(html, /memes\.js/);
 });
 
 check("app never hardcodes a live result for fire()", () => {
@@ -105,7 +106,38 @@ check("app never hardcodes a live result for fire()", () => {
 check("proxy talks to DeepSeek, not a stub", () => {
   const proxy = readFileSync(join(root, "api/translate.js"), "utf8");
   assert.match(proxy, /api\.deepseek\.com\/chat\/completions/);
+  assert.match(proxy, /api\.deepseek\.com\/responses/);
   assert.doesNotMatch(proxy, /mock|fake|todo result/i);
+});
+
+check("extract responses output_text", () => {
+  assert.equal(
+    core.extractResponseText({ output_text: '{"line":"你胆子真实肥嘟嘟低"}' }),
+    '{"line":"你胆子真实肥嘟嘟低"}'
+  );
+});
+
+check("extract chat completions content", () => {
+  assert.equal(
+    core.extractResponseText({
+      choices: [{ message: { content: '{"line":"这课真是闹麻了"}' } }],
+    }),
+    '{"line":"这课真是闹麻了"}'
+  );
+});
+
+check("live pack maps you're so brave to 肥嘟嘟低", () => {
+  const memes = require(join(root, "memes.js"));
+  assert.match(memes.SYSTEM["en-cn"], /你胆子真实肥嘟嘟低/);
+  assert.match(memes.userPrompt("en-cn", "you're so brave"), /你胆子真实肥嘟嘟低/);
+  assert.equal(memes.TAPE[0].to, "你胆子真实肥嘟嘟低");
+  assert.doesNotMatch(memes.SYSTEM["en-cn"], /你胆子真大（阴阳/);
+});
+
+check("search bodies force web_search", () => {
+  const bodies = core.buildSearchBodies("deepseek-flash", "sys", "user");
+  assert.equal(bodies[0].tools[0].type, "web_search");
+  assert.equal(bodies[0].tool_choice.type, "web_search");
 });
 
 if (failed) {

@@ -97,6 +97,35 @@
     return String(text || "").trim().slice(0, MAX_INPUT);
   }
 
+  function extractResponseText(data) {
+    if (!data || typeof data !== "object") return "";
+    if (typeof data.output_text === "string" && data.output_text.trim()) {
+      return data.output_text.trim();
+    }
+    const choice = data.choices?.[0]?.message?.content;
+    if (typeof choice === "string" && choice.trim()) return choice.trim();
+    const chunks = [];
+    const output = data.output;
+    if (Array.isArray(output)) {
+      output.forEach((item) => {
+        if (!item || typeof item !== "object") return;
+        if (item.type && item.type !== "message" && item.type !== "output_text") return;
+        const content = item.content;
+        if (typeof content === "string") chunks.push(content);
+        if (Array.isArray(content)) {
+          content.forEach((part) => {
+            if (!part) return;
+            if (typeof part.text === "string") chunks.push(part.text);
+            if (part.type === "output_text" && typeof part.text === "string") {
+              chunks.push(part.text);
+            }
+          });
+        }
+      });
+    }
+    return chunks.join("\n").trim();
+  }
+
   function buildChatBodies(model, system, user) {
     const base = {
       model,
@@ -104,7 +133,7 @@
         { role: "system", content: system },
         { role: "user", content: user },
       ],
-      temperature: 0.9,
+      temperature: 0.95,
       max_tokens: 500,
     };
     return [
@@ -118,6 +147,30 @@
     ];
   }
 
+  function buildSearchBodies(model, system, user) {
+    const input = [
+      { role: "system", content: system },
+      { role: "user", content: user },
+    ];
+    const base = {
+      model,
+      input,
+      temperature: 0.95,
+      thinking: { type: "disabled" },
+    };
+    return [
+      {
+        ...base,
+        tools: [{ type: "web_search" }],
+        tool_choice: { type: "web_search" },
+      },
+      {
+        ...base,
+        tools: [{ type: "web_search" }],
+      },
+    ];
+  }
+
   return {
     MAX_INPUT,
     parseMeme,
@@ -125,6 +178,8 @@
     detectDir,
     mapHttpError,
     clipInput,
+    extractResponseText,
     buildChatBodies,
+    buildSearchBodies,
   };
 });

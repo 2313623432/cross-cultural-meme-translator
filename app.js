@@ -45,7 +45,7 @@ const I18N = {
     keySavedUnverified: "Saved here, but DeepSeek didn’t answer. The next send might still fail.",
     needKey: "Check a DeepSeek key first. This is a real call, not a demo.",
     needText: "You gotta type something.",
-    busy: "DeepSeek is cooking…",
+    busy: "Searching living memes…",
     done: "Fresh from DeepSeek.",
     copied: "Copied.",
     copyFail: "Copy failed — just select it.",
@@ -54,8 +54,8 @@ const I18N = {
     switchedEn: "That’s English — flipped to EN → CN.",
     langBtn: "口语",
     langTitle: "Switch interface to Chinese",
-    placeholderEnCn: "the class is so boring",
-    placeholderCnEn: "你行你上啊",
+    placeholderEnCn: "you're so brave",
+    placeholderCnEn: "你胆子真实肥嘟嘟低",
   },
   zh: {
     onAir: "真能用 · 不是 PPT",
@@ -63,7 +63,7 @@ const I18N = {
     kicker: "这玩意儿干嘛的",
     tapeKicker: "对过味的",
     manifesto:
-      "对外讲文化一张口就是中秋节从唐朝讲起。本国人都划走，你指望老外看完？好玩比有用重要多了。国内一句「你胆子真大」不如直接甩张龙图。国外也一样。翻译软件都卷死了，梗还是对不上。LOL 里跟外国人对线，他们最狠也就 nobody likes you，搁咱们这儿听着像在撒娇。",
+      "对外讲文化一张口就是中秋节从唐朝讲起。本国人都划走，你指望老外看完？好玩比有用重要多了。you're so brave 现在没人回「你胆子真大」，最火的是「你胆子真实肥嘟嘟低」，再不行就甩张龙图。翻译软件都卷死了，梗还是对不上。LOL 里跟外国人对线，他们最狠也就 nobody likes you，搁咱们这儿听着像在撒娇。",
     channelA: "A 路",
     channelB: "B 路",
     dirEnCn: "英语 → 中文梗",
@@ -92,7 +92,7 @@ const I18N = {
     keySavedUnverified: "先存在本地了，但 DeepSeek 没回。待会翻译可能翻车。",
     needKey: "先把 DeepSeek 的 key 验过。这是真打接口，不是演示页。",
     needText: "你得先打几个字进来。",
-    busy: "DeepSeek 正在编…",
+    busy: "先搜活梗再编…",
     done: "刚从 DeepSeek 打回来的。",
     copied: "抄走了。",
     copyFail: "没复制上，你自己选一下。",
@@ -101,77 +101,14 @@ const I18N = {
     switchedEn: "这是英语，已经切到「英语 → 中文梗」。",
     langBtn: "EN",
     langTitle: "Switch interface to English",
-    placeholderEnCn: "the class is so boring",
-    placeholderCnEn: "你行你上啊",
+    placeholderEnCn: "you're so brave",
+    placeholderCnEn: "你胆子真实肥嘟嘟低",
   },
 };
 
-const TAPE = [
-  { from: "the class is so boring", to: "这课真是闹麻了" },
-  { from: "the class is so good", to: "这个课真尼玛有点意思啊啊啊" },
-  { from: "你行你上啊", to: "ok boomer, you do it then" },
-  { from: "什么档次跟我用一样的", to: "bro really thinks he's the main character" },
-];
-
-const EXAMPLES = {
-  "en-cn": [
-    "the class is so boring",
-    "the class is so good",
-    "nobody likes you",
-    "you're so brave",
-  ],
-  "cn-en": [
-    "你行你上啊",
-    "什么档次跟我用一样的",
-    "你这人胆子真大",
-    "这课真是闹麻了",
-  ],
-};
-
-const SYSTEM = {
-  "en-cn": `你是混国内互联网的人，不是翻译软件，不是文化讲解员。
-
-把英语翻成「现在的人网上会怎么打」。微信群、微博、B站评论、小红书、贴吧、开黑语音、LOL 对线。
-
-死规矩：
-1. 只输出一个 JSON，不要 markdown。
-2. line 必须像刚敲出来的：短、冲、有情绪。能脏就脏一点，能抽象就抽象，但别变成乱码。
-3. 严禁翻译腔、新闻腔、讲解腔。禁止：非常、十分、令人、显得、有些、比较、这节课、进行、导览、传播、体现了、该表达。不要「这节课非常无聊」。
-4. why 也用大白话，像跟朋友解释，不要小论文。
-5. 力度对齐。原句在阴阳你就阴阳，原句在开骂你就开骂，原句真心夸就用中文网感夸。
-6. 老外以为自己在对线、咱们听着像撒娇的那种弱英骂，中文要给够力。
-7. 一行定输赢。alts 再给两个同一力度、不同口吻的。literal 必须是干巴巴的字典翻译，拿来对照。
-
-对味：
-- the class is so boring → 这课真是闹麻了
-- the class is so good → 这个课真尼玛有点意思啊啊啊
-- nobody likes you → 你这人在局里纯纯毒瘤
-- you're so brave → 你这人胆子真大（阴阳，不是夸）
-
-{"line":"那句中文梗","alts":["备选1","备选2"],"vibe":"语气","why":"为啥这么说，20-40字大白话","literal":"字典翻译"}`,
-
-  "cn-en": `You post on English internet. You are not a textbook, not a tour guide.
-
-Turn Chinese into how people actually talk on Twitter/X, TikTok, Reddit, Discord, Twitch, group chats.
-
-Hard rules:
-1. One JSON object. No markdown.
-2. "line" sounds like a native just typed it. Cadence, attitude, living slang.
-3. Ban tourist English and lecture English. Ban "nobody likes you" when the Chinese is actually roasting.
-4. "why" is a friend explaining the bit, not an essay.
-5. Match intensity. 阴阳怪气 = sarcasm. 抽象 = shitpost. 闹麻了 = this is so over / actually unhinged / I'm cooked.
-6. Translate the SOCIAL MOVE of memes (龙图, 已老实, 显眼包), not the words.
-7. One line. alts = two other angles, same heat. literal = boring dictionary gloss.
-
-Hits:
-- 这课真是闹麻了 → this class is actually unhinged i cannot
-- 这个课真尼玛有点意思啊啊啊 → this class kinda goes crazy ngl
-- 你行你上啊 → ok boomer, you do it then
-- 什么档次跟我用一样的 → bro really thinks he's the main character
-- 你这人胆子真大 → that's crazy work. you really just said that
-
-{"line":"the English meme line","alts":["alt 1","alt 2"],"vibe":"tone","why":"why this hits, 20-40 words","literal":"dictionary translation"}`,
-};
+const TAPE = FreqMemes.TAPE;
+const EXAMPLES = FreqMemes.EXAMPLES;
+const SYSTEM = FreqMemes.SYSTEM;
 
 const $ = (id) => document.getElementById(id);
 
@@ -362,7 +299,10 @@ async function requestDeepSeek(kind, body) {
           headers,
         }
       : {
-          url: "https://api.deepseek.com/chat/completions",
+          url:
+            kind === "responses"
+              ? "https://api.deepseek.com/responses"
+              : "https://api.deepseek.com/chat/completions",
           method: "POST",
           headers: { ...headers, "Content-Type": "application/json" },
           body: JSON.stringify(body),
@@ -413,47 +353,69 @@ async function verifyKey(apiKey) {
   }
 }
 
-async function callDeepSeek(text) {
-  const user = [
-    state.dir === "en-cn" ? "Direction: English → Chinese internet meme." : "Direction: Chinese → English internet meme.",
-    "Source:",
-    text,
-  ].join("\n");
+function memeFromData(data) {
+  const content = FreqCore.extractResponseText(data);
+  return FreqCore.parseMeme(content);
+}
 
+async function callDeepSeek(text) {
+  const user = FreqMemes.userPrompt(state.dir, text);
   let lastError = t("badJson");
   let lastStatus = 0;
 
+  const tryOne = async (kind, body) => {
+    const { res, data } = await requestDeepSeek(kind, body);
+    lastStatus = res.status;
+    if (res.ok) {
+      const parsed = memeFromData(data);
+      if (!parsed) throw new Error(t("badJson"));
+      return parsed;
+    }
+    lastError = FreqCore.mapHttpError(
+      res.status,
+      data.error?.message || data.message,
+      state.lang
+    );
+    if (res.status === 401 || res.status === 402 || res.status === 403) {
+      localStorage.removeItem(STORAGE_KEY_OK);
+      syncKeyDot();
+      throw new Error(lastError);
+    }
+    const err = new Error(lastError);
+    err.status = res.status;
+    throw err;
+  };
+
   for (const model of MODELS) {
-    const bodies = FreqCore.buildChatBodies(model, SYSTEM[state.dir], user);
-    for (const body of bodies) {
+    const searchBodies = FreqCore.buildSearchBodies(model, SYSTEM[state.dir], user);
+    for (const body of searchBodies) {
       try {
-        const { res, data } = await requestDeepSeek("chat", body);
-        lastStatus = res.status;
-        if (res.ok) {
-          const content = data.choices?.[0]?.message?.content;
-          const parsed = FreqCore.parseMeme(content);
-          if (!parsed) throw new Error(t("badJson"));
-          return parsed;
-        }
-        lastError = FreqCore.mapHttpError(
-          res.status,
-          data.error?.message || data.message,
-          state.lang
-        );
-        if (res.status === 401 || res.status === 402 || res.status === 403) {
-          localStorage.removeItem(STORAGE_KEY_OK);
-          syncKeyDot();
-          throw new Error(lastError);
-        }
-        if (res.status !== 400) break;
+        return await tryOne("responses", body);
       } catch (err) {
         if (err.message && /Invalid DeepSeek|余额|balance|Quota/i.test(err.message)) {
           throw err;
         }
-        lastError = FreqCore.mapHttpError(lastStatus, err.message, state.lang);
+        lastError = FreqCore.mapHttpError(err.status || lastStatus, err.message, state.lang);
         if (err.name === "AbortError") {
           throw new Error(FreqCore.mapHttpError(0, "timeout", state.lang));
         }
+        if (err.status && err.status !== 400) break;
+      }
+    }
+
+    const chatBodies = FreqCore.buildChatBodies(model, SYSTEM[state.dir], user);
+    for (const body of chatBodies) {
+      try {
+        return await tryOne("chat", body);
+      } catch (err) {
+        if (err.message && /Invalid DeepSeek|余额|balance|Quota/i.test(err.message)) {
+          throw err;
+        }
+        lastError = FreqCore.mapHttpError(err.status || lastStatus, err.message, state.lang);
+        if (err.name === "AbortError") {
+          throw new Error(FreqCore.mapHttpError(0, "timeout", state.lang));
+        }
+        if (err.status && err.status !== 400) break;
       }
     }
   }
