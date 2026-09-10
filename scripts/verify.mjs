@@ -112,8 +112,8 @@ check("proxy talks to DeepSeek, not a stub", () => {
 
 check("extract responses output_text", () => {
   assert.equal(
-    core.extractResponseText({ output_text: '{"line":"你胆子真实肥嘟嘟低"}' }),
-    '{"line":"你胆子真实肥嘟嘟低"}'
+    core.extractResponseText({ output_text: '{"line":"你胆子真实肥嘟嘟滴"}' }),
+    '{"line":"你胆子真实肥嘟嘟滴"}'
   );
 });
 
@@ -126,11 +126,11 @@ check("extract chat completions content", () => {
   );
 });
 
-check("live pack maps you're so brave to 肥嘟嘟低", () => {
+check("live pack maps you're so brave to 肥嘟嘟滴", () => {
   const memes = require(join(root, "memes.js"));
-  assert.match(memes.SYSTEM["en-cn"], /你胆子真实肥嘟嘟低/);
-  assert.match(memes.userPrompt("en-cn", "you're so brave"), /你胆子真实肥嘟嘟低/);
-  assert.equal(memes.TAPE[0].to, "你胆子真实肥嘟嘟低");
+  assert.match(memes.SYSTEM["en-cn"], /你胆子真实肥嘟嘟滴/);
+  assert.match(memes.userPrompt("en-cn", "you're so brave"), /你胆子真实肥嘟嘟滴/);
+  assert.equal(memes.TAPE[0].to, "你胆子真实肥嘟嘟滴");
   assert.doesNotMatch(memes.SYSTEM["en-cn"], /你胆子真大（阴阳/);
 });
 
